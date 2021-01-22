@@ -17,7 +17,7 @@ export class AppController {
 
   @Get('repos/stargazers')
   getStargazers(@Query('repo')repo : string) {
-    return this.appService.addNewRepo(repo);
+    return this.appService.getStargazers(repo);
   }
 
 
