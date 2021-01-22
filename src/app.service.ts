@@ -59,7 +59,7 @@ export class AppService {
   }
 
   /* Executed every 24 hours*/
-  @Cron('10 * * * * *')
+  @Cron('* * * * * 1')
   fetchStargazersDaily () {
     var obj = {
       repos: []
