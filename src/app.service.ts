@@ -4,6 +4,9 @@ import * as fetch from 'node-fetch';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import axios from 'axios';
+
+
 @Injectable()
 export class AppService {
   
@@ -15,8 +18,15 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getStargazers(repo : string){
-    return "Hola";
+  async getStargazers(repo : string): Promise<object[]>{
+    const config = {
+      headers : {
+        'Accept' : 'application/vnd.github.v3+json',
+        'Authorization': 'token d0dc37ab6201f33a90dbe0522f91482e9a198c3b'
+      }
+    }
+    const stargazers = await axios.get(`https://api.github.com/repos/${repo}/stargazers`,config);
+    return stargazers.data;
   }
 
   async addNewRepo(url : string){
